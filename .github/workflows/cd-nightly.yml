@@ -14,6 +14,6 @@ jobs:
       - name: Install
         run: npm i
       - name: Patch Package for Insiders
-        run: "node -e \"var p = require('./package.json'); var d = new Date(); console.log(JSON.stringify({...p, name: p.name+'-insiders', displayName: p.displayName + ' (Insiders)', version: ''+d.getFullYear()+d.getMonth()+d.getDay()+d.getHours() }))\""
+        run: "node -e \"var p = require('./package.json'); var d = new Date(); console.log(JSON.stringify({...p, name: p.name+'-insiders', displayName: p.displayName + ' (Insiders)', version: ''+d.getFullYear()+d.getMonth()+d.getDay()+d.getHours() }))\" >> ./package.json"
       - name: Publish Extension
         run: npx vsce publish -p ${{ secrets.MARKETPLACE_PAT }}
