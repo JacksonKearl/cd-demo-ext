@@ -27,7 +27,7 @@ jobs:
               exit 1
             else
               echo "Updating vNightly"
-              git push origin :refs/branches/vNightly
+              git push origin --delete vNightly
               git branch --delete vNightly
               git checkout -b vNightly
               git push origin vNightly
