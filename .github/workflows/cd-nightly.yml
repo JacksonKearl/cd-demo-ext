@@ -28,7 +28,6 @@ jobs:
             else
               echo "Updating vNightly"
               git push origin --delete vNightly
-              git branch --delete vNightly
               git checkout -b vNightly
               git push origin vNightly
             fi
