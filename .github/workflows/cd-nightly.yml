@@ -23,7 +23,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           if git rev-parse vNightly >/dev/null 2>&1; then
-            if [ ${git show-ref -s vNightly} = ${git show-ref -s HEAD} ]; then
+            if [ $(git show-ref -s vNightly) = $(git show-ref -s HEAD) ]; then
               echo "No changes since last nightly build. Exiting."
               exit 1
             else
