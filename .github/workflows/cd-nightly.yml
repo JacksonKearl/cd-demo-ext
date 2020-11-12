@@ -44,7 +44,7 @@ jobs:
     if: needs.check.outputs.status == 'success'
     steps:
       - name: Install
-        run: npm i
+        run: cd ..; npm i
       - name: Patch Package for Nightly
         run: |
           node -e "var p = require('./package.json'); var d = new Date(); console.log(JSON.stringify({...p, name: p.name+'-nightly', displayName: p.displayName + ' (Nightly)', version: ''+d.getFullYear()+'.'+d.getMonth()+'.'+d.getDay()+d.getHours()+d.getMinutes() }))" > ./package.nightly.json
