@@ -16,7 +16,7 @@ git push origin v$VERSION
 
 ## Nightly Build
 
-To enable a nightly build copy `.github/workflows/cd-nightly.yml` to your extension push it to GitHub, then releases will be created automatically every day, or manually via:
+To enable a nightly build copy `.github/workflows/cd-nightly.yml` to your extension push it to GitHub, then releases will be created automatically every day that chanages are made, or manually via:
 
 ```bash
 curl --location --request POST 'https://api.github.com/repos/[Your Extension]/dispatches' \
