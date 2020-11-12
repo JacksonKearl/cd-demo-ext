@@ -30,7 +30,7 @@ jobs:
             echo $headRef
             if [ "$nightlyRef" = "$headRef" ]; then
               echo "No changes since last nightly build. Exiting."
-              echo "::set-output name=status::unchanged
+              echo "::set-output name=status::unchanged"
             else
               echo "Updating vNightly"
               git push origin --delete vNightly
