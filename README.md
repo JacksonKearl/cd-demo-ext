@@ -1,6 +1,8 @@
 # Continuous Deployment Demo Extension
 
-This repo exists to demonstrate how to use GitHub Actions to run continuously deploy your VS Code extension.
+This repo exists to demonstrate how to use GitHub Actions to run continuously deploy your VS Code extension. It can both:
+- Publish a stable release to the marketplace and GitHub's release page when a new tag is pushed
+- Publish a nightly release to the marketplace and an artifact to the runner Action on a set schedule (nightly by default)
 
 Start by generating a Marketplace PAT by following the instructions [here](https://code.visualstudio.com/api/working-with-extensions/publishing-extension#get-a-personal-access-token). Then add it as a repository secret with name `MARKETPLACE_PAT` ([instructions](https://docs.github.com/en/free-pro-team@latest/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository)).
 
