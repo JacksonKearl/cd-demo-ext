@@ -11,7 +11,7 @@ Next, copy `.github/workflows/cd-stable.yml` to your extension push it to GitHub
 ```bash
 VERSION=$(node -e "console.log(require('../../package.json').version)")
 git tag v$VERSION
-git push origin --follow-tags
+git push origin v$VERSION
 ```
 
 > Note: The Action as written assumes your extension can be built via `npm i && vsce package`, if this is not the case some modifications to the Action will be required.
