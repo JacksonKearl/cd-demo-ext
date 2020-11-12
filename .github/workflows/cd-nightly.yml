@@ -49,9 +49,8 @@ jobs:
     name: Publish Nightly
     needs: check
     runs-on: ubuntu-latest
-    # if: needs.check.outputs.status == "changed"
+    if: needs.check.outputs.status == "changed"
     steps:
-      - run: echo ${{needs.check.outputs.status}}
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Install
