@@ -9,9 +9,9 @@ Start by generating a Marketplace PAT by following the instructions [here](https
 Next, copy `.github/workflows/cd-stable.yml` to your extension push it to GitHub, then create releases via:
 
 ```bash
-VERSION=$(node -e "console.log(require('../package.json').version)")
+VERSION=$(node -e "console.log(require('../../package.json').version)")
 git tag v$VERSION
-git push origin v$VERSION
+git push origin --follow-tags
 ```
 
 > Note: The Action as written assumes your extension can be built via `npm i && vsce package`, if this is not the case some modifications to the Action will be required.
