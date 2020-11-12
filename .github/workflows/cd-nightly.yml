@@ -49,7 +49,7 @@ jobs:
     name: Publish Nightly
     needs: check
     runs-on: ubuntu-latest
-    if: needs.check.outputs.status == "changed"
+    if: needs.check.outputs.status == 'changed'
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
