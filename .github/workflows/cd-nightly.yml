@@ -62,3 +62,7 @@ jobs:
         run: npx vsce package -o ./${{ env.PACKAGE_NAME }}.vsix
       - name: Publish Extension
         run: npx vsce publish --packagePath ./${{ env.PACKAGE_NAME }}.vsix -p ${{ secrets.MARKETPLACE_PAT }}
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.PACKAGE_NAME }}.vsix
+          path: ./${{ env.PACKAGE_NAME }}.vsix
