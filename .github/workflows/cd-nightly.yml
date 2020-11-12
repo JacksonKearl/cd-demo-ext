@@ -1,6 +1,9 @@
 on:
+
   schedule:
     - cron: "*/5 * * * *"
+  repository_dispatch:
+    types: [trigger-nightly-publish]
 
 name: Publish Nightly
 
@@ -15,7 +18,7 @@ jobs:
         run: npm i
       - name: Patch Package for Nightly
         run: |
-          node -e "var p = require('./package.json'); var d = new Date(); console.log(JSON.stringify({...p, name: p.name+'-nightly', displayName: p.displayName + ' (Nightly)', version: ''+d.getFullYear()+'.'+d.getMonth()+'.'+d.getDay()+'.'+d.getHours() }))" > ./package.nightly.json
+          node -e "var p = require('./package.json'); var d = new Date(); console.log(JSON.stringify({...p, name: p.name+'-nightly', displayName: p.displayName + ' (Nightly)', version: ''+d.getFullYear()+'.'+d.getMonth()+'.'+d.getDay()+'.'+d.getHours()'.'+d.getMinutes() }))" > ./package.nightly.json
           mv package.nightly.json package.json
       - name: Publish Extension
         run: npx vsce publish -p ${{ secrets.MARKETPLACE_PAT }}
