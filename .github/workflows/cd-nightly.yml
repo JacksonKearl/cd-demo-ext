@@ -31,6 +31,7 @@ jobs:
             if [ "$nightlyRef" = "$headRef" ]; then
               echo "No changes since last nightly build. Exiting."
               echo "::set-output name=status::unchanged"
+              exit 0
             else
               echo "Updating vNightly"
               git push origin --delete vNightly
@@ -42,11 +43,13 @@ jobs:
             git checkout -b vNightly
             git push origin vNightly
           fi
+          echo "::set-output name=status::changed"
+
   publish:
     name: Publish Nightly
     needs: check
     runs-on: ubuntu-latest
-    if: needs.check.outputs.status != 'unchanged'
+    if: needs.check.outputs.status == 'changed'
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
