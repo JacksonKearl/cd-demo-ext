@@ -2,20 +2,20 @@ on:
   schedule:
     - cron: "*/5 * * * *"
 
-name: Publish Insiders
+name: Publish Nightly
 
 jobs:
   build:
-    name: Publish Insiders
+    name: Publish Nightly
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Install
         run: npm i
-      - name: Patch Package for Insiders
+      - name: Patch Package for Nightly
         run: |
-          node -e "var p = require('./package.json'); var d = new Date(); console.log(JSON.stringify({...p, name: p.name+'-insiders', displayName: p.displayName + ' (Insiders)', version: ''+d.getFullYear()+'.'+d.getMonth()+'.'+d.getDay()+'.'+d.getHours() }))" > ./package.insiders.json
-          mv package.insiders.json package.json
+          node -e "var p = require('./package.json'); var d = new Date(); console.log(JSON.stringify({...p, name: p.name+'-nightly', displayName: p.displayName + ' (Nightly)', version: ''+d.getFullYear()+'.'+d.getMonth()+'.'+d.getDay()+'.'+d.getHours() }))" > ./package.nightly.json
+          mv package.nightly.json package.json
       - name: Publish Extension
         run: npx vsce publish -p ${{ secrets.MARKETPLACE_PAT }}
