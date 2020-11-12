@@ -11,7 +11,7 @@ jobs:
     name: Check for updates to Nightly
     runs-on: ubuntu-latest
     outputs:
-      status: ${{ steps.earlyexit.status }}
+      status: ${{ steps.earlyexit.repostatus }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -30,7 +30,7 @@ jobs:
             echo $headRef
             if [ "$nightlyRef" = "$headRef" ]; then
               echo "No changes since last nightly build. Exiting."
-              echo "::set-output name=status::unchanged"
+              echo "::set-output name=repostatus::unchanged"
               exit 0
             else
               echo "Updating vNightly"
@@ -43,7 +43,7 @@ jobs:
             git checkout -b vNightly
             git push origin vNightly
           fi
-          echo "::set-output name=status::changed"
+          echo "::set-output name=repostatus::changed"
 
   publish:
     name: Publish Nightly
