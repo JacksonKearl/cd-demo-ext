@@ -19,8 +19,10 @@ jobs:
         run: node -e "console.log('PACKAGE_NAME=' + require('./package.json').name + '-v' + require('./package.json').version)" >> $GITHUB_ENV
       - name: Install
         run: npm i
-      - name: Build extension
+      - name: Build Extension
         run: npx vsce package -o ./${{ env.PACKAGE_NAME }}.vsix
+      - name: Publish Extension
+        run: npx vsce publish --packagePath ./${{ env.PACKAGE_NAME }}.vsix -p ${{ secrets.MARKETPLACE_PAT }}
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
