@@ -11,7 +11,7 @@ jobs:
     name: Check for updates to Nightly
     runs-on: ubuntu-latest
     outputs:
-      status: ${{ steps.earlyexit.repostatus }}
+      status: ${{ steps.earlyexit.outputs.repostatus }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
