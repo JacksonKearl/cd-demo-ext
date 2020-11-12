@@ -23,7 +23,7 @@ jobs:
           git config user.email github-actions@github.com
           if git rev-parse origin/vNightly >/dev/null 2>&1; then
             nightlyRef=$(git show-ref -s origin/vNightly)
-            headRef=$(git show-ref -s HEAD
+            headRef=$(git show-ref -s HEAD)
             echo "origin/vNightly"
             echo $nightlyRef
             echo "HEAD"
