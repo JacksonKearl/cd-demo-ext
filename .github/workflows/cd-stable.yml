@@ -16,7 +16,7 @@ jobs:
       - name: Verify Versions
         run: node -e "if ('refs/tags/v' + require('./package.json').version !== '${{ github.ref }}') { console.log('::error' + 'Version Mismatch. refs/tags/v' + require('./package.json').version, '${{ github.ref }}'); throw Error('Version Mismatch')} "
       - name: Generate Name
-        run: node -e "process.env.PACKAGE_NAME =  require('./package.json').name + '-v' + require('./package.json').version"
+        run: node -e "console.log('PACKAGE_NAME=' + require('./package.json').name + '-v' + require('./package.json').version)" >> $GITHUB_ENV
       - name: Install
         run: npm i
       - name: Build extension
