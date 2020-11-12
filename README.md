@@ -2,7 +2,9 @@
 
 This repo exists to demonstrate how to use GitHub Actions to run continuously deploy your VS Code extension.
 
-In short, copy `.github/workflows/cd-stable.yml` to your extension push it to GitHub, then create releases via:
+Start by generating a Marketplace PAT by following the instructions [here](https://code.visualstudio.com/api/working-with-extensions/publishing-extension#get-a-personal-access-token). Then add it as a repository secret with name `MARKETPLACE_PAT` ([instructions](https://docs.github.com/en/free-pro-team@latest/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository)).
+
+Next, copy `.github/workflows/cd-stable.yml` to your extension push it to GitHub, then create releases via:
 
 ```bash
 VERSION=$(node -e "console.log(require('./package.json').version)")
@@ -14,7 +16,7 @@ git push origin v$VERSION
 
 ## Nightly Build
 
-To enable a nightly build simply copy `.github/workflows/cd-nightly.yml` to your extension push it to GitHub, then releases will be created automatically every day, or manually via:
+To enable a nightly build copy `.github/workflows/cd-nightly.yml` to your extension push it to GitHub, then releases will be created automatically every day, or manually via:
 
 ```bash
 curl --location --request POST 'https://api.github.com/repos/[Your Extension]/dispatches' \
