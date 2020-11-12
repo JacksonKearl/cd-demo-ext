@@ -43,8 +43,10 @@ jobs:
     runs-on: ubuntu-latest
     if: needs.check.outputs.status == 'success'
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Install
-        run: cd ..; npm i
+        run: npm i
       - name: Patch Package for Nightly
         run: |
           node -e "var p = require('./package.json'); var d = new Date(); console.log(JSON.stringify({...p, name: p.name+'-nightly', displayName: p.displayName + ' (Nightly)', version: ''+d.getFullYear()+'.'+d.getMonth()+'.'+d.getDay()+d.getHours()+d.getMinutes() }))" > ./package.nightly.json
