@@ -1,5 +1,6 @@
 {
 	"name": "cd-demo-ext",
+	"publisher": "jakearl",
 	"displayName": "Continuous Deployment Demo Extension",
 	"description": "Continuous deployment for VSCode extensions via GitHub Actions",
 	"version": "0.0.1",
