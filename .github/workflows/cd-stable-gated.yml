@@ -33,7 +33,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Gated Release ${{ github.ref }}
-          draft: false
+          draft: true
           prerelease: true
       - name: Upload GitHub Release
         id: upload-release-asset
