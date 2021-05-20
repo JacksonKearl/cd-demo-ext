@@ -1,7 +1,7 @@
 on:
   push:
     tags:
-    - 'g*' # Push events to matching g*, i.e. g1.0, g20.15.10
+      - "g*" # Push events to matching g*, i.e. g1.0, g20.15.10
 
 name: Publish Stable (Gated)
 
@@ -21,12 +21,13 @@ jobs:
       - name: Build Extension
         run: npx vsce package -o ./${{ env.PACKAGE_NAME }}.vsix
       - name: Publish Test Artifact
-          uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v2
         with:
           name: ${{ env.PACKAGE_NAME }}.vsix
           path: ./${{ env.PACKAGE_NAME }}.vsix
   deploy:
     name: Publish Stable
+    needs: build
     runs-on: ubuntu-latest
     environment: deploy
     steps:
