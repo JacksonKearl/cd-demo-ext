@@ -30,4 +30,15 @@ curl --location --request POST 'https://api.github.com/repos/[Your Extension]/di
 
 > Note: The Action as written assumes your nightly build is simply your stable build with some packaage.json entries modified, if this is not the case some modifications to the Action will be required.
 
-https://github.com/actions/upload-artifact/issues/53
+## Gated Releases
+
+In cases where you'd prefer to manually verify the built extension prior to releasing to the market place, the `cd-stable-gated.yml` workflow may prove helpful. This uses [GitHub Environments](https://docs.github.com/en/actions/reference/environments) to require a reviewer or some time to pass before proceeding to upload the extension to the marketplace. To begin, create an environment called "deploy" with your desired protections. If you wish, you can place the `MARKETPLACE_PAT` in this environment's secrets, which will prevent it from being read by other actions in the repo.
+
+![Example of environment setup](./environment.png)
+
+By default, the gated environment pipeline is set to run on tags prefixed with `g`. Upon pushing a tag with the `g` prefix, an Action will be created that will first build the release and create a GitHub Release for it, which will have the extension attached as a `.vsix`. The reviewer should test the extension, then assuming it is sound, navigate to the Action in the actions tab, and click "Review Deployments", then approve the release to kick off the publish to the marketplace.
+![Screenshot of UI of pending review state](./pending-review.png).
+
+Note that the Release created will be an official GitHub Release, even before testing has completed. This is the smoothest flow as it doesn;t require any manaul releasing, but it could cause issues if you decide not to release the build. In that case, you should delete the Release before attempting to run the job again. An alternative is to create the release as a draft, by uncommenting the line in the action file, which would the require the reviewer to mark the release as stable after completing their review.
+
+> Note, it'd be nice for the extension to be kept in an asset so no release is made until testing, but that is not possible due to https://github.com/actions/upload-artifact/issues/53
