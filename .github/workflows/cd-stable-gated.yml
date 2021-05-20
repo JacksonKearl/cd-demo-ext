@@ -33,8 +33,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Gated Release ${{ github.ref }}
-          draft: true
-          prerelease: true
+          # draft: true # uncomment to make the release a draft at first then manually mark it released after testing
       - name: Upload GitHub Release
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
