@@ -1,6 +1,7 @@
 # Continuous Deployment Demo Extension
 
 This repo exists to demonstrate how to use GitHub Actions to run continuously deploy your VS Code extension. It can both:
+
 - Publish a stable release to the marketplace and GitHub's release page when a new tag is pushed
 - Publish a nightly release to the marketplace and an artifact to the runner Action on a set schedule (nightly by default). A vNightly branch is created to track the latest nightly build.
 
@@ -28,3 +29,5 @@ curl --location --request POST 'https://api.github.com/repos/[Your Extension]/di
 ```
 
 > Note: The Action as written assumes your nightly build is simply your stable build with some packaage.json entries modified, if this is not the case some modifications to the Action will be required.
+
+https://github.com/actions/upload-artifact/issues/53
